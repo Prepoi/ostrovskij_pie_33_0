@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Сайт - квест">
+		<meta name="author" content="Островский Иван">
+		<link rel="stylesheet" href="css/style.css">
+		<title>Quest</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+		<script src="js/script.js"></script>
+	</head>
+	<body class="page">
+		<div class="header">
+			<header class="start-header header-style">
+				<p>
+				Вы попали в квест. В начале вам даётся 2 здоровья. 
+				Потеряв их - игра закончится. 
+				От каждого выбора зависит ваша жизнь.
+				<br>
+				Удачи!
+				</p>
+			</header>
+			<header class="health-header header-style display-none">
+				<p>
+				<br>
+				Ваше текущее здоровье - 2
+				<br><br>
+				</p>
+			</header>
+			<header class="end-game header-style display-none">
+				<p>
+					
+				</p>
+			</header>
+		</div>
+		<div class="main">
+			<div class="main-start">
+				<button type="button" class="button-start-game" onclick="startGame()">
+					Начать игру
+				</button>
+			</div>
+			<div class="start-location display-none">
+				<p class="upper-choose-text">
+					Вы очнулись в непонятном месте. Перед собой вы видите лес и озеро.
+				</p>
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="comeForest()" class="choose-button">
+							<img src="./img/forest.jpeg" alt="forest"><br>
+							Пойти в лес
+						</button>
+					</div>
+					<div class="another-choose">
+						<button type="button" onclick="comeLake()" class="choose-button">
+							<img src="./img/lake.jpeg" alt="lake"><br>
+							Пойти на озеро
+						</button>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="forest display-none">
+				<p class="upper-choose-text">
+					Вы пошли в лес. Перед собой вы видите две тропинки - одна ведет
+					налево, а другая - направо.
+				</p>
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="comeLeft()" class="choose-button">
+							<img src="./img/leftRoad.jpeg" alt="leftRoad"><br>
+								Пойти налево
+						</button>
+					</div>
+					<div class="another-choose">
+						<button type="button" onclick="comeRight()" class="choose-button">
+							<img src="./img/rightRoad.jpg" alt="rightRoad"><br>
+								Пойти направо
+						</button>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="right display-none">
+				<p class="upper-choose-text">
+					Пока вы шли - на вас напали пауки. Вы смогли отбиться, но вас потрепало.
+				</p>
+				<button class="button-continue-game choose-button" onclick="continueFromTurn()">
+					Продолжить путь
+				</button>
+			</div>
+			
+			<div class="left display-none">
+				<p class="upper-choose-text">
+					Удача повернулась к вам лицом, вы находите меч. Вот так удача!
+				</p>
+				<button class="button-continue-game choose-button" onclick="continueFromTurn()">
+					Продолжить путь
+				</button>
+			</div>
+			
+			<div class="meet-with-alch display-none">
+				<p class="upper-choose-text">
+					Продолжая свой путь вы встречаете алхимика. Он представился вам
+					Бернардом. В ходе диалога он предложил вам поесть.
+				</p>
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="eat()" class="choose-button">
+							<img src="./img/eat.jpeg" alt="eat"><br>
+								Принять предложение
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="notEat()" class="choose-button">
+							<img src="./img/notEat.jpeg" alt="notEat"><br>
+								Отказаться
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="offer-sleep display-none">
+				<p class="upper-choose-text">
+					После от него поступило предложение поспать.
+				</p>
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="sleep()" class="choose-button">
+							<img src="./img/sleep.jpeg" alt="sleep"><br>
+								Поспать
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="continueJourney()" class="choose-button">
+							<img src="./img/continueJourney.jpeg" alt="continueJourney"><br>
+								Продолжить путешествие
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="sleep display-none">
+				<p class="upper-choose-text">
+					Бернард оказался не просто алхимиком, а еще и людоедом.
+					Пока вы спали - он вас порешал, так себе смерть...
+				</p>
+			</div>
+			
+			<div class="come-next display-none">
+				<p class="upper-choose-text">
+					Продолжая своё путешествие вы натыкаетесь на монстра.
+				</p>
+				
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="fight()" class="choose-button">
+							<img src="./img/fight.jpeg" alt="fight"><br>
+								Драться
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="talkTo()" class="choose-button">
+							<img src="./img/talkTo.jpeg" alt="talkTo"><br>
+								Договориться
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="runAway()" class="choose-button">
+							<img src="./img/runAway.jpeg" alt="runAway"><br>
+								Убежать
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="talk-to-monstr display-none">
+				<p class="upper-choose-text">
+					На удивление монстр оказался не враждебным и очень даже разгооврчивым.
+					Он предложид вам вступить в его гильдию.
+				</p>
+				
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="confirmGuild()" class="choose-button">
+							<img src="./img/confirmGuild.jpeg" alt="confirmGuild"><br>
+								Вступить в гильдию
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="denyGuild()" class="choose-button">
+							<img src="./img/denyGuild.jpeg" alt="denyGuild"><br>
+								Отказаться
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="village display-none">
+				<p class="upper-choose-text">
+					Продолжая свой путь вы нашли деревню. 
+					Вы так устали от всего, что зашли
+					в первый попавшийся дом и уснули...
+					Продолжение следует!
+				</p>
+			</div>
+			
+			<div class="guild display-none">
+				<p class="upper-choose-text">
+					Вы вступаете в гильдию орков и теперь ваш путь связан с ними!
+					Продолжение следует!
+				</p>
+			</div>
+			
+			<div class="lake display-none">
+				<p class="upper-choose-text">
+					Подойдя к озеру вы понимаете, что его можно быстро переплыть, либо
+					долго обходить его вокруг.
+				</p>
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="swimOverLake()" class="choose-button">
+							<img src="./img/swimOverLake.jpeg" alt="swimOverLake"><br>
+								Переплыть
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="avoidLake()" class="choose-button">
+							<img src="./img/avoidLake.jpeg" alt="avoidLake"><br>
+								Обойти
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="bush display-none">
+				<p class="upper-choose-text">
+					Вы замечаете куст с неизвестынми вам ягодами.
+				</p>
+				
+				<div class="choose">
+					<div class="another-choose">
+						<button type="button" onclick="eatBerry()" class="choose-button">
+							<img src="./img/eatBerry.jpeg" alt="eatBerry"><br>
+								Съесть
+						</button>
+					</div>
+					
+					<div class="another-choose">
+						<button type="button" onclick="avoidBerry()" class="choose-button">
+							<img src="./img/avoidBerry.jpeg" alt="avoidBerry"><br>
+								Игнорировать
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="death display-none">
+				<p class="upper-choose-text">
+					Для перезапуска игры - обновите страницу
+				</p>
+			</div>
+		</div>
+		<div class="footer">
+			<footer>
+				© Островский Иван, 2024
+			</footer>
+		</div>
+	</body>
+</html>
